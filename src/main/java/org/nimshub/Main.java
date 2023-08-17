@@ -7,18 +7,22 @@ import org.nimshub.utils.Printer;
 import static org.nimshub.utils.Constants.STUDENT_NAME;
 
 public class Main {
-    public static void main(String[] args)
-    {
-        RSA rsa = new RSA();
-        String teststring = STUDENT_NAME;
+    public static void main(String[] args) {
+        testRSAEncryption();
+    }
+    /**
+     * Test method for illustrate the functionality of RSA encryption
+     */
+    private static void testRSAEncryption() {
 
-        Printer.print("String in Bytes: "
-                + Converters.bytesToString(teststring.getBytes()));
-        // encrypt
-        byte[] encrypted = rsa.encrypt(teststring.getBytes());
-        // decrypt
-        byte[] decrypted = rsa.decrypt(encrypted);
-        Printer.print("Decrypting Bytes: " + Converters.bytesToString(decrypted));
-        Printer.print("Decrypted String: " + new String(decrypted));
+        RSA rsa = new RSA();
+
+        Printer.print("Original Message : " + STUDENT_NAME);
+        Printer.print("Original Message in Bytes: " + Converters.bytesToString(STUDENT_NAME.getBytes()));
+
+        byte[] encryptedMessage = rsa.encrypt(STUDENT_NAME.getBytes());
+        Printer.print("Encrypted message :" + new String(encryptedMessage));
+        byte[] decryptedMessage = rsa.decrypt(encryptedMessage);
+        Printer.print("Decrypted message :" + new String(decryptedMessage));
     }
 }

@@ -34,9 +34,13 @@ public class RSA {
         BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
         logger.info(String.format("calculated totient function : %s %n",phi));
 
+        logger.info("generating public key...");
         publicKey = BigInteger.probablePrime(BIT_LENGTH / 2, random);
+        logger.info(String.format("generated public key : %s %n",publicKey));
 
+        logger.info("generating private key...");
         privateKey = publicKey.modInverse(phi);
+        logger.info(String.format("generated private key : %s %n",privateKey));
     }
 
 
