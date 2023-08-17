@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.nimshub</groupId>
-    <artifactId>rsa-encrytion</artifactId>
+    <artifactId>rsa-encryption</artifactId>
     <version>1.0</version>
 
     <properties>
