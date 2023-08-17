@@ -17,12 +17,12 @@ public class Main {
 
         RSA rsa = new RSA();
 
-        Printer.print("Original Message : " + STUDENT_NAME);
-        Printer.print("Original Message in Bytes: " + Converters.bytesToString(STUDENT_NAME.getBytes()));
+        Printer.print("Original Message  " , STUDENT_NAME);
+        Printer.print("Original Message in Bytes " , Converters.bytesToString(STUDENT_NAME.getBytes()));
 
         byte[] encryptedMessage = rsa.encrypt(STUDENT_NAME.getBytes());
-        Printer.print("Encrypted message :" + new String(encryptedMessage));
+        Printer.print("Encrypted message " , new String(encryptedMessage));
         byte[] decryptedMessage = rsa.decrypt(encryptedMessage);
-        Printer.print("Decrypted message :" + new String(decryptedMessage));
+        Printer.print("Decrypted message " , new String(decryptedMessage));
     }
 }

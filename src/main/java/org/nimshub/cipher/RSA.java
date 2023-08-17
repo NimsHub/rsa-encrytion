@@ -24,23 +24,31 @@ public class RSA {
 
         logger.info("generating two large prime numbers p and q");
         BigInteger p = BigInteger.probablePrime(BIT_LENGTH, random);
-        logger.info(String.format("randomly assigned value for p : %s %n",p));
+        logger.info(String.format("randomly assigned value for p : %s %n", p));
         BigInteger q = BigInteger.probablePrime(BIT_LENGTH, random);
-        logger.info(String.format("randomly assigned value for q : %s %n",q));
+        logger.info(String.format("randomly assigned value for q : %s %n", q));
 
         modulus = p.multiply(q);
-        logger.info(String.format("calculated value of modulus from p and q : %s %n",modulus));
+        logger.info(String.format("calculated value of modulus from p and q : %s %n", modulus));
 
         BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
-        logger.info(String.format("calculated totient function : %s %n",phi));
+        logger.info(String.format("calculated totient function : %s %n", phi));
 
         logger.info("generating public key...");
         publicKey = BigInteger.probablePrime(BIT_LENGTH / 2, random);
-        logger.info(String.format("generated public key : %s %n",publicKey));
+        logger.info(String.format("generated public key : %s %n", publicKey));
+
+        /**
+         * generate e by finding a Phi such that they are co-primes (gcd = 1)
+         *
+         */
+        while (phi.gcd(publicKey).compareTo(BigInteger.ONE) > 0 && publicKey.compareTo(phi) < 0) {
+            publicKey.add(BigInteger.ONE);
+        }
 
         logger.info("generating private key...");
         privateKey = publicKey.modInverse(phi);
-        logger.info(String.format("generated private key : %s %n",privateKey));
+        logger.info(String.format("generated private key : %s %n", privateKey));
     }
 
 
